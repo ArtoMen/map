@@ -34,4 +34,4 @@ const schema = new Schema<Mark>({
   icon: {type: Schema.Types.ObjectId, required: true},
 });
 
-export const MarkModel = model<Mark>('Marks', schema);
+export const markModel = model<Mark>('Marks', schema);

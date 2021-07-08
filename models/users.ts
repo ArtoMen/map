@@ -17,4 +17,4 @@ const schema = new Schema<User>({
   imageSrc: {type: String, default: null},
 });
 
-export const UserModel = model<User>('Users', schema);
+export const userModel = model<User>('Users', schema);

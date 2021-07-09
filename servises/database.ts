@@ -2,8 +2,7 @@
 import mongoose from 'mongoose';
 import {settings} from '../settings/settings';
 
-// function
-async function start() {
+async function connect() {
   try {
     await mongoose.connect(settings.DB, {
       useNewUrlParser: true,
@@ -15,4 +14,4 @@ async function start() {
   }
 }
 
-export {start};
+export {connect};

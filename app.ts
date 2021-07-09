@@ -2,20 +2,18 @@
 import express from 'express';
 // @ts-ignore
 // import passport from 'passport';
-import {start} from './servises/database';
-// import {settings} from './settings/settings';
+import {connect} from './servises/database';
+import routes from './Routes/routes';
 
-start();
-const app = express();
+connect();
+export const app = express();
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(routes);
 // app.use(passport.initialize());
 // require('./middleware/passport')(passport);
 // app.use(`/${config.pathToUploads}`, express.static(config.pathToUploads));
-
-export {app};
-
 
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('ok!');

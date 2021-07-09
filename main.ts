@@ -5,6 +5,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import {settings} from './settings/settings';
 import usersRouter from './Routes/user';
+import marksRouter from './Routes/mark';
 
 class Server {
   public app: express.Application;
@@ -17,6 +18,7 @@ class Server {
 
   private routes() {
     this.app.use('/api/users', usersRouter);
+    this.app.use('/api/marks', marksRouter);
   }
 
   private config() {
@@ -40,7 +42,7 @@ class Server {
 
   public async start() {
     await this.database();
-    this.app.listen(8080, () => console.log('Server start!'));
+    this.app.listen(settings.PORT, () => console.log('Server start!'));
     this.app.get('/', (req: express.Request, res: express.Response) => {
       res.status(200).json('ok!');
     });

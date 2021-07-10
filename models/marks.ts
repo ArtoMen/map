@@ -1,4 +1,6 @@
 import {Schema, model} from 'mongoose';
+// @ts-ignore
+import moment from 'moment';
 
 
 export interface Mark {
@@ -18,7 +20,7 @@ export interface Mark {
 const schema = new Schema<Mark>({
   title: {type: String, required: true},
   content: {type: String, default: null},
-  createDate: {type: Date, default: Date.now},
+  createDate: {type: Date, default: moment().format('YYYY-MM-DD HH:mm:ss')},
   updateDate: {type: Date, default: null},
   location: {
     type: {

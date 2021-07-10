@@ -2,6 +2,7 @@
 import express from 'express';
 // @ts-ignore
 import passport from 'passport';
+// @ts-ignore
 import mongoose from 'mongoose';
 import {settings} from './settings/settings';
 import UsersRouter from './routes/users';

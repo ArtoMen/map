@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/ArtoMen/map#readme",
   "dependencies": {
-    "@types/bcrypt": "^5.0.0",
+    "@types/bcrypt": "^2.0.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
     "@types/express-validator": "^3.0.0",
     "@types/moment": "^2.13.0",
@@ -26,6 +27,7 @@
     "@types/multer": "^1.4.7",
     "@types/passport": "^1.0.6",
     "@types/passport-jwt": "^3.0.5",
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"

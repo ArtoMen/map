@@ -4,7 +4,7 @@ import express from 'express';
 // import passport from 'passport';
 import mongoose from 'mongoose';
 import {settings} from './settings/settings';
-import usersRouter from './Routes/user';
+import UsersRouter from './Routes/users';
 import marksRouter from './Routes/mark';
 
 class Server {
@@ -17,7 +17,7 @@ class Server {
   }
 
   private routes() {
-    this.app.use('/api/users', usersRouter);
+    this.app.use('/api/users', UsersRouter);
     this.app.use('/api/marks', marksRouter);
   }
 
@@ -49,5 +49,5 @@ class Server {
   }
 }
 
-const server = new Server();
+const server: Server = new Server();
 server.start();

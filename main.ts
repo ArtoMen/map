@@ -5,7 +5,7 @@ import passport from 'passport';
 import mongoose from 'mongoose';
 import {settings} from './settings/settings';
 import UsersRouter from './routes/users';
-import marksRouter from './routes/mark';
+import marksRouter from './routes/marks';
 
 class Server {
   public app: express.Application;

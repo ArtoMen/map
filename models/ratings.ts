@@ -1,7 +1,7 @@
 import {Schema, model} from 'mongoose';
 
 export interface Rating {
-  _id: string,
+  id: string,
   value: number,
   mark: string,
   user: string

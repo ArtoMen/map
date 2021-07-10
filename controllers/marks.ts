@@ -3,9 +3,13 @@ import {Response, Request} from 'express';
 import moment from 'moment';
 
 import {MarkModel} from '../models/marks';
+import {error} from '../services/error_handler';
+import {User} from '../models/users';
+
 
 export default class Marks {
   public static async createMark(req: Request, res: Response) {
+    const user: User = req.user as User;
     const marks = new MarkModel({
       title: req.body.title,
       content: req.body.content,
@@ -13,21 +17,18 @@ export default class Marks {
         type: 'Point',
         coordinates: req.body.coordinates,
       },
-      user: '60e95cff518cd13bc0d1f471', // add user objID
+      user: user.id,
       icon: '60e95cff518cd13bc0d1f471', // add icon objID
     });
-    marks.save();
+    await marks.save();
 
     if (marks) {
       res.status(200).json({result: true});
     } else {
-      res.status(400).json({
-        result: false,
-        message: 'Mark create error',
-        code: 251,
-      });
+      error(res, 'Mark create error', 251 );
     }
   }
+
   public static async editMark(req: Request, res: Response) {
     const fields = {
       title: req.body.title ? req.body.title : null,
@@ -49,11 +50,16 @@ export default class Marks {
     if (result.ok) {
       res.status(200).json({result: true});
     } else {
-      res.status(400).json({
-        result: false,
-        message: 'Mark update error',
-        code: 252,
-      });
+      error(res, 'Mark update error', 252 );
+    }
+  }
+  public static async deleteMark(req: Request, res: Response) {
+    const mark = MarkModel.deleteOne({_id: req.body.mark_id});
+
+    if (!mark) {
+      res.status(200).json({result: true});
+    } else {
+      return error(res, 'Mark delete error', 253 );
     }
   }
 }

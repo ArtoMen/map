@@ -4,7 +4,7 @@ import moment from 'moment';
 
 
 export interface Mark {
-  _id: string,
+  id: string,
   title: string,
   content: string,
   createDate: string,

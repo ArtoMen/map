@@ -1,6 +1,7 @@
 import {Schema, model} from 'mongoose';
 
 export interface Comment {
+  _id: string,
   content: string,
   createDate: string,
   updateDate: string,

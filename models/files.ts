@@ -1,6 +1,7 @@
 import {Schema, model} from 'mongoose';
 
 export interface File {
+  _id: string,
   fileSrc: string,
   uploadDate: string,
   mark: string

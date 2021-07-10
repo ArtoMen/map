@@ -1,11 +1,11 @@
 // @ts-ignore
 import express from 'express';
 // @ts-ignore
-// import passport from 'passport';
+import passport from 'passport';
 import mongoose from 'mongoose';
 import {settings} from './settings/settings';
-import UsersRouter from './Routes/users';
-import marksRouter from './Routes/mark';
+import UsersRouter from './routes/users';
+import marksRouter from './routes/mark';
 
 class Server {
   public app: express.Application;
@@ -24,7 +24,7 @@ class Server {
   private config() {
     this.app.use(express.urlencoded({extended: true}));
     this.app.use(express.json());
-    // this.app.use(passport.initialize());
+    this.app.use(passport.initialize());
   }
 
   private async database() {

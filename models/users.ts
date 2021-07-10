@@ -2,6 +2,7 @@ import {Schema, model} from 'mongoose';
 
 
 export interface User {
+  _id: string,
   firstName: string,
   lastName: string,
   email: string,
@@ -12,7 +13,7 @@ export interface User {
 const schema = new Schema<User>({
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
-  email: {type: String, required: true},
+  email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   imageSrc: {type: String, default: null},
 });

@@ -1,7 +1,8 @@
 import {Response, Request} from 'express';
-import {User, UserModel} from '../models/users';
+import {UserModel} from '../models/users';
 // @ts-ignore
 import bcrypt from 'bcrypt';
+// @ts-ignore
 import jwt from 'jsonwebtoken';
 import {settings} from '../settings/settings';
 
@@ -29,6 +30,10 @@ export default class Users {
   }
 
   public static async login(req: Request, res: Response) {
+    const {headers} = req;
+
+    console.log(headers);
+
     const error = (res: Response) => {
       res.status(401).json({
         result: false,
@@ -57,7 +62,7 @@ export default class Users {
     }, settings.secretKey, {expiresIn: '30d'});
     res.status(200).json({
       result: true,
-      token: `Bearer ${token}`,
+      token: token,
     });
   }
 }

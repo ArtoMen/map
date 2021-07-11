@@ -13,4 +13,4 @@ const schema = new Schema<File>({
   mark: {type: Schema.Types.ObjectId, required: true},
 });
 
-export const filesModel = model<File>('Files', schema);
+export const FilesModel = model<File>('Files', schema);

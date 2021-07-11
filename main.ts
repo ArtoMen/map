@@ -20,6 +20,7 @@ class Server {
   private routes() {
     this.app.use('/api/users', UsersRouter);
     this.app.use('/api/marks', marksRouter);
+    this.app.use('/file', express.static('uploads/'));
   }
 
   private config() {

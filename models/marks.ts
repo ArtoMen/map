@@ -33,7 +33,7 @@ const schema = new Schema<Mark>({
     },
   },
   user: {type: Schema.Types.ObjectId, required: true},
-  icon: {type: Schema.Types.ObjectId, required: true},
+  icon: {type: String, default: null},
 });
 
 export const MarkModel = model<Mark>('Marks', schema);

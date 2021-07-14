@@ -1,7 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 import * as jwt from 'jsonwebtoken';
 import {settings} from '../settings/settings';
-import {User} from '../models/users';
 
 export default async function auth(req: Request, res: Response, next: NextFunction) {
   const {headers} = req;
@@ -14,8 +13,14 @@ export default async function auth(req: Request, res: Response, next: NextFuncti
     return;
   }
   try {
-    const user: User = jwt.verify(headers.authorization!, settings.secretKey) as User;
-    req.user = user;
+    interface user {
+      id: string,
+      firstName: string,
+      lastName: string,
+      email: string,
+      image: string,
+    }
+    req.user = jwt.verify(headers.authorization!, settings.secretKey) as user;
     next();
   } catch (e) {
     res.status(401).json({

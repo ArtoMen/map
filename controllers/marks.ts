@@ -1,16 +1,19 @@
 import {Response, Request} from 'express';
 // @ts-ignore
 import moment from 'moment';
-import {unlink} from 'fs/promises';
+import {unlink} from 'fs';
 
 import {MarkModel} from '../models/marks';
 import {error} from '../services/error_handler';
 import {User} from '../models/users';
-import {uploadFile} from '../middleware/helper';
 
 
 export default class Marks {
   public static async createMark(req: Request, res: Response) {
+    interface fileInterface {
+      file?: any,
+    }
+    const file: fileInterface = req as fileInterface;
     const user: User = req.user as User;
     const marks = new MarkModel({
       title: req.body.title,
@@ -20,7 +23,7 @@ export default class Marks {
         coordinates: req.body.coordinates,
       },
       user: user.id,
-      icon: req.file ? req.file!.filename : null,
+      icon: file.file ? file.file!.filename : null,
     });
     await marks.save();
     if (marks) {
@@ -58,7 +61,9 @@ export default class Marks {
     const mark = await MarkModel.findOne({_id: req.body.mark_id});
     const deletemark = await MarkModel.deleteOne({_id: req.body.mark_id});
 
-    await unlink(`uploads/${mark!.icon}`);
+    await unlink(`uploads/${mark!.icon}`, () => {
+      return true;
+    });
 
     if (deletemark) {
       res.status(200).json({result: true});
@@ -67,4 +72,3 @@ export default class Marks {
     }
   }
 }
-

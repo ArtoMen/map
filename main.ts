@@ -5,8 +5,9 @@ import passport from 'passport';
 // @ts-ignore
 import mongoose from 'mongoose';
 import {settings} from './settings/settings';
-import UsersRouter from './routes/users';
+import usersRouter from './routes/users';
 import marksRouter from './routes/marks';
+import commentRouter from './routes/comments';
 
 class Server {
   public app: express.Application;
@@ -18,15 +19,16 @@ class Server {
   }
 
   private routes() {
-    this.app.use('/api/users', UsersRouter);
+    this.app.use('/api/users', usersRouter);
     this.app.use('/api/marks', marksRouter);
-    this.app.use('/file', express.static('uploads/'));
+    this.app.use('api/comments', commentRouter);
   }
 
   private config() {
     this.app.use(express.urlencoded({extended: true}));
     this.app.use(express.json());
     this.app.use(passport.initialize());
+    this.app.use('/file', express.static('uploads/'));
   }
 
   private async database() {

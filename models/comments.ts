@@ -17,4 +17,4 @@ const schema = new Schema<Comment>({
   user: {type: Schema.Types.ObjectId, required: true},
 });
 
-export const filesModel = model<Comment>('Comments', schema);
+export const CommentModel = model<Comment>('Comments', schema);

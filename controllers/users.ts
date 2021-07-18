@@ -8,6 +8,7 @@ import {settings} from '../settings/settings';
 import {error} from '../services/error_handler';
 import {check, validationResult} from 'express-validator';
 import result from '../services/result';
+import {MarkModel} from '../models/marks';
 
 export default class Users {
   public static async register(req: Request, res: Response) {
@@ -33,7 +34,6 @@ export default class Users {
   }
 
   public static async login(req: Request, res: Response) {
-    const {headers} = req;
     const error = (res: Response) => {
       res.status(401).json({
         result: false,
@@ -141,4 +141,20 @@ export default class Users {
     await UserModel.updateOne({_id: user.id}, {$set: opt.getOptions()});
     result(res);
   }
+
+  // Temporarily
+  public static async delete(req: Request, res: Response) {
+    const user = req.user as User;
+    await UserModel.deleteOne({id: user.id});
+    result(res, {});
+  }
+
+  // Temporarily
+  public static async getMarks(req: Request, res: Response) {
+    const user = req.user as User;
+    const candidate = await MarkModel.find({user: user.id});
+    result(res, {marks: candidate});
+  }
 }
+
+

@@ -29,4 +29,17 @@ usersRouter.post(
   Users.edit,
 );
 
+usersRouter.get(
+  '/delete',
+  auth,
+  Users.delete,
+);
+
+usersRouter.get(
+  '/getMarks',
+  auth,
+  Users.getMarks,
+);
+
+
 export default usersRouter;

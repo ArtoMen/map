@@ -1,3 +1,4 @@
+// @ts-ignore
 import {Schema, model} from 'mongoose';
 
 export interface Comment {

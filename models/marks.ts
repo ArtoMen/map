@@ -1,7 +1,5 @@
-import {Schema, model} from 'mongoose';
 // @ts-ignore
-import moment from 'moment';
-
+import {Schema, model} from 'mongoose';
 
 export interface Mark {
   id: string,
@@ -14,13 +12,27 @@ export interface Mark {
     coordinates: [number, number]
   },
   user: string,
-  icon: string
+  icon: string,
+  files: Array<{
+    fileSrc: string,
+    uploadDate: string,
+  }>,
+  comments: Array<{
+    content: string,
+    createDate: string,
+    updateDate: string,
+    user: string,
+  }>,
+  ratings: Array<{
+    value: number,
+    user: string,
+  }>,
 }
 
 const schema = new Schema<Mark>({
   title: {type: String, required: true},
   content: {type: String, default: null},
-  createDate: {type: Date, default: moment().format('YYYY-MM-DD HH:mm:ss')},
+  createDate: {type: Date, default: Date.now},
   updateDate: {type: Date, default: null},
   location: {
     type: {
@@ -34,6 +46,20 @@ const schema = new Schema<Mark>({
   },
   user: {type: Schema.Types.ObjectId, required: true},
   icon: {type: String, default: null},
+  files: [{
+    fileSrc: String,
+    uploadDate: Date,
+  }],
+  comments: [{
+   content: String,
+    createDate: {type: Date, default: Date.now},
+    updateDate: {type: Date, default: null},
+    user: Schema.Types.ObjectId,
+  }],
+  ratings: [{
+    value: Number,
+    user: Schema.Types.ObjectId,
+  }]
 });
 
 export const MarkModel = model<Mark>('Marks', schema);

@@ -2,6 +2,7 @@ import {validationResult, ValidationError} from 'express-validator';
 import {NextFunction, Request, Response} from 'express';
 
 export function validator(req: Request, res: Response, next: NextFunction) {
+  console.log(req.body)
   const errorFormatter = ({msg, param}: ValidationError) => {
     return {field: param, errorMessage: msg};
   };

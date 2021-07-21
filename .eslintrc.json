@@ -4,11 +4,7 @@
         "es2021": true
     },
     "extends": [
-        "google",
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
+        "google"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -16,9 +12,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint",
-        "no-loops",
-        "prettier"
+        "@typescript-eslint"
     ],
     "rules": {
         "require-jsdoc": ["error", {
@@ -34,10 +28,6 @@
         "linebreak-style": 0,
         "indent": [2, "tab"],
         "indent": [2, 2],
-        "max-len": ["error", { "code": 100 }],
-        "no-loops/no-loops": 2, // 2 means throw an ERROR
-        "no-console": 1,
-        "prettier/prettier": 2
-
+        "max-len": ["error", { "code": 100 }]
     }
 }

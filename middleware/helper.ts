@@ -2,7 +2,6 @@ import {validationResult, ValidationError} from 'express-validator';
 import {NextFunction, Request, Response} from 'express';
 
 export function validator(req: Request, res: Response, next: NextFunction) {
-  console.log(req.body)
   const errorFormatter = ({msg, param}: ValidationError) => {
     return {field: param, errorMessage: msg};
   };
@@ -14,4 +13,22 @@ export function validator(req: Request, res: Response, next: NextFunction) {
     next();
     return true;
   }
+}
+
+export function uploadFiles(req: Request) {
+  interface fileinterface{
+    files?: any
+  }
+  const files: fileinterface = req as fileinterface;
+  const media: any = [];
+  let i: number = 0;
+
+  files.files.forEach((e: any) => {
+    media[i] = {
+      fileSrc: e.path,
+      uploadDate: Date.now(),
+    };
+    i++;
+  });
+  return media;
 }

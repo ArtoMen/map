@@ -45,13 +45,13 @@ const schema = new Schema<Mark>({
     },
   },
   user: {type: Schema.Types.ObjectId, required: true},
-  icon: {type: String, default: null},
+  icon: {type: String, default: '/uploads/icon.png'},
   files: [{
     fileSrc: String,
     uploadDate: Date,
   }],
   comments: [{
-   content: String,
+    content: String,
     createDate: {type: Date, default: Date.now},
     updateDate: {type: Date, default: null},
     user: Schema.Types.ObjectId,
@@ -59,7 +59,7 @@ const schema = new Schema<Mark>({
   ratings: [{
     value: Number,
     user: Schema.Types.ObjectId,
-  }]
+  }],
 });
 
 export const MarkModel = model<Mark>('Marks', schema);

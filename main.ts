@@ -22,13 +22,13 @@ class Server {
     this.app.use('/api/users', usersRouter);
     this.app.use('/api/marks', marksRouter);
     this.app.use('api/comments', commentRouter);
+    this.app.use('/uploads/', express.static('uploads/'));
   }
 
   private config() {
     this.app.use(express.urlencoded({extended: true}));
     this.app.use(express.json());
     this.app.use(passport.initialize());
-    this.app.use('/file', express.static('uploads/'));
   }
 
   private async database() {

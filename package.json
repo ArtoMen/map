@@ -9,16 +9,8 @@
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ArtoMen/map.git"
-  },
   "author": "ArtoMen and ReeN",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ArtoMen/map/issues"
-  },
-  "homepage": "https://github.com/ArtoMen/map#readme",
   "dependencies": {
     "@types/bcrypt": "^2.0.0",
     "@types/bcryptjs": "^2.4.2",
@@ -45,12 +37,12 @@
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier-format && npm run lint",
-      "pre-push": ""
+      "pre-commit": "npm run prettier-format && npm run lint"
     }
   }
 }
